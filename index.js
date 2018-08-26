@@ -1,5 +1,7 @@
+let level = 20
+
 function getNoise() {
-  const amount = Math.floor(Math.random() * 20) + 5
+  const amount = Math.floor(Math.random() * level) + Math.floor(level/4)
   let str = ''
   for (let i = 0; i < amount; i++) {
     str += `&#${Math.floor(Math.random() * 98) + 768};`
@@ -16,7 +18,7 @@ document.querySelector('body').addEventListener('paste', event => {
 })
 
 function transformChar(char) {
-  return /^[a-zA-Z0-9 ]{1}$/.test(char) ? `${getNoise()}${char}` : char
+  return /^[a-zA-Z0-9 ]{1}$/.test(char) ? `${getNoise()}${char}${getNoise()}` : char
 }
 
 function insertTextAtCursor(text) {
@@ -31,7 +33,6 @@ function insertTextAtCursor(text) {
   sel.addRange(range)
 }
 
-
 document.querySelector('.output').addEventListener('keypress', event => {
   if (event.which === 13) { // Enter
     return
@@ -39,5 +40,8 @@ document.querySelector('.output').addEventListener('keypress', event => {
   event.preventDefault()
   const charStr = String.fromCharCode(event.which)
   insertTextAtCursor(transformChar(charStr))
-});
+})
 
+document.querySelector('.range').addEventListener('change', event => {
+  level = parseInt(event.target.value)
+})
