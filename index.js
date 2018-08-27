@@ -1,6 +1,6 @@
-let level = 20
+let defaultLevel = 20
 
-function getNoise() {
+function getNoise(level) {
   const amount = Math.floor(Math.random() * level) + Math.floor(level/4)
   let str = ''
   for (let i = 0; i < amount; i++) {
@@ -17,11 +17,28 @@ document.querySelector('body').addEventListener('paste', event => {
   str.split('').forEach(c => insertTextAtCursor(transformChar(c)))
 })
 
-function transformChar(char) {
-  return /^[a-zA-Z0-9 ]{1}$/.test(char) ? `${getNoise()}${char}${getNoise()}` : char
+function startShake() {
+  const h1 = document.querySelector('h1')
+  if (Math.random() > 0.95) {
+    h1.innerHTML = transformChar('Z', 5) +
+      transformChar('a', 5) +
+      transformChar('l', 5) +
+      transformChar('g', 5) +
+      transformChar('o', 5)
+  }
+
+  h1.classList.add('shake')
+  setTimeout(() => {
+    h1.classList.remove('shake')
+  }, 500)
+}
+
+function transformChar(char, level = defaultLevel) {
+  return /^[a-zA-Z0-9 ]{1}$/.test(char) ? `${getNoise(level)}${char}${getNoise(level)}` : char
 }
 
 function insertTextAtCursor(text) {
+  startShake()
   let sel = window.getSelection()
   let range = sel.getRangeAt(0)
   let textNode = document.createElement('span')
