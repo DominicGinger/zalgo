@@ -9,11 +9,17 @@
   </head>
   <body>
     <div class="header">
-      <h1>Z̆̊͊҉҉̠̱̦̩͕ą̟̹͈̺̹̋̅ͯĺ̡̘̹̻̩̩͋͘g̪͚͗ͬ͒o̢̖͇̬͍͇͓̔͋͊̓</h1>
+      <div class="title-container">
+        <h1>Z̆̊͊҉҉̠̱̦̩͕ą̟̹͈̺̹̋̅ͯĺ̡̘̹̻̩̩͋͘g̪͚͗ͬ͒o̢̖͇̬͍͇͓̔͋͊̓</h1>
+      </div>
       <div class="range-container">
-        <div class="button-container">
-          <input type="button" class="plus" value="+">
-          <input type="button" class="minus" value="-">
+        <div class="buttons-container">
+          <div class="button-container">
+            <input type="button" class="plus" value="+">
+          </div>
+          <div class="button-container">
+            <input type="button" class="minus" value="-">
+          </div>
         </div>
         <input class="range" type="number" value="20">
       </div>
@@ -22,7 +28,7 @@
       </div>
     </div>
 
-    <div contenteditable="true" class="output">
+    <div contenteditable="true" class="output" data-placeholder="Enter text here">
     </div>
   </body>
   <script type="application/javascript" src="./index.js" ></script>

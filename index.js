@@ -51,6 +51,7 @@ function insertTextAtCursor(text) {
 }
 
 document.querySelector('.output').addEventListener('keypress', event => {
+  event.target.setAttribute('data-placeholder', '');
   if (event.which === 13) { // Enter
     return
   }
