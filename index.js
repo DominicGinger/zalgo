@@ -45,3 +45,7 @@ document.querySelector('.output').addEventListener('keypress', event => {
 document.querySelector('.range').addEventListener('change', event => {
   level = parseInt(event.target.value)
 })
+
+document.querySelector('.clear').addEventListener('click', event => {
+  document.querySelector('.output').innerHTML = '';
+})
