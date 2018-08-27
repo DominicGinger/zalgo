@@ -59,10 +59,22 @@ document.querySelector('.output').addEventListener('keypress', event => {
   insertTextAtCursor(transformChar(charStr))
 })
 
-document.querySelector('.range').addEventListener('change', event => {
-  level = parseInt(event.target.value)
+document.querySelector('.range').addEventListener('keyup', event => {
+  defaultLevel = parseInt(event.target.value)
 })
 
 document.querySelector('.clear').addEventListener('click', event => {
-  document.querySelector('.output').innerHTML = '';
+  document.querySelector('.output').innerHTML = ''
+})
+
+document.querySelector('.plus').addEventListener('click', event => {
+  const newValue = parseInt(document.querySelector('.range').value) + 1
+  document.querySelector('.range').value = newValue
+  defaultLevel = newValue
+})
+
+document.querySelector('.minus').addEventListener('click', event => {
+  const newValue = parseInt(document.querySelector('.range').value) - 1
+  document.querySelector('.range').value = newValue
+  defaultLevel = newValue
 })

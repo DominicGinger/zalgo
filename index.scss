@@ -9,11 +9,18 @@ body > * {
   flex-shrink: 0;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 .header {
   display: flex;
   flex-direction: column;
   margin-bottom: 5rem;
   min-height: 310px;
+  margin: auto;
 
   h1 {
     margin-bottom: 5rem;
@@ -41,11 +48,15 @@ body > * {
     }
   }
 
-  .range {
-    max-width: 650px;
-    width: 650px;
-    margin: auto;
-    margin-bottom: 2rem;
+  .range-container {
+    display: flex;
+    flex-direction: row;
+
+    .button-container {
+      display: flex;
+      flex-direction: column;
+
+    }
   }
 
   .clear-container {
