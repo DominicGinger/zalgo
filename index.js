@@ -3,10 +3,11 @@ let defaultLevel = 20
 function getNoise(level) {
   const amount = Math.floor(Math.random() * level) + Math.floor(level/4)
   let str = ''
-  for (let i = 0; i < amount; i++) {
+  for (let i = 0; i < amount + 1; i++) {
     str += `&#${Math.floor(Math.random() * 98) + 768};`
   }
 
+  console.log(str)
   return str
 }
 
