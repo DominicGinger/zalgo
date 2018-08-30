@@ -103,14 +103,20 @@ function insertTextAtCursor(text) {
   sel.addRange(range)
 }
 
-document.querySelector('.output').addEventListener('keypress', event => {
+const ignoreKeys = [13, 16, 17, 18, 91, 27, 8, 46, 86] // Enter, alt, shift, control, cmd, esc, backspace, delete, paste
+
+document.querySelector('.output').addEventListener('keydown', event => ignoreKeys.includes(event.which) || event.preventDefault())
+document.querySelector('.output').addEventListener('keyup', event => {
   event.target.setAttribute('data-placeholder', '');
-  if (event.which === 13) { // Enter
+  if (ignoreKeys.includes(event.which)) {
     return
   }
   event.preventDefault()
-  const charStr = String.fromCharCode(event.which)
-  insertTextAtCursor(transformChar(charStr))
+  if (event.which === 9) { // Tab
+    insertTextAtCursor(transformChar(' '))
+  } else {
+    insertTextAtCursor(transformChar(event.key))
+  }
 })
 
 document.querySelector('.range').addEventListener('keyup', event => {
