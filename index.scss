@@ -357,3 +357,35 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
   justify-content: center;
   min-height: 200px;
 }
+
+@media all and (max-width: 800px) {
+  body {
+    padding: 0px;
+  }
+
+  .container {
+    padding: 0px;
+    max-width: 100%;
+  }
+
+  .header {
+    padding: 0px;
+    margin-top: 0px;
+
+    .title-container {
+      position: static;
+    }
+  }
+
+  .settings {
+    margin-left: 75%;
+    margin-top: 0px;
+  }
+
+  .output {
+    margin-left: 0px;
+    margin-right: 0px;
+    min-width: calc(100% - 4rem);
+    max-width: calc(100% - 4rem);
+  }
+} 
