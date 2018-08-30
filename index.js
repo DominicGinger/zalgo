@@ -1,7 +1,8 @@
 let defaultLevel = 20
 let showFront = true
-let showColours = false
+let showColours = true
 let displayMode = 'all'
+let strikeThrough = false
 
 const limitMap = {
   all: { min: 768, max: 98 },
@@ -9,14 +10,28 @@ const limitMap = {
   below: { min: 796, max: 23 }
 }
 
+function getRandomNumber(min, max) {
+  number = Math.floor(Math.random() * max) + min
+
+  if (number >= 820 && number <= 824) {
+    return getRandomNumber(min, max)
+  }
+  return number
+}
+
 function getNoise(level) {
+  level = level > 1000 ? 1000 : level
   const amount = Math.floor(Math.random() * level) + Math.floor(level/4)
   let str = ''
 
   const { min, max } = limitMap[displayMode]
   console.log(min, max)
   for (let i = 0; i < amount + 1; i++) {
-    str += `&#${Math.floor(Math.random() * max) + min};`
+    str += `&#${getRandomNumber(min, max)};`
+  }
+
+  if (strikeThrough) {
+    str += '&#820;&#821;&#822;&#823;&#824;'
   }
 
   return str
@@ -54,7 +69,7 @@ function insertTextAtCursor(text) {
   let sel = window.getSelection()
   let range = sel.getRangeAt(0)
   let textNode = document.createElement('span')
-  textNode.style.color = showColours ? '#'+(Math.random()*0xFFFFFF<<0).toString(16) : 'default'
+  textNode.style.color = showColours ? '#'+(Math.random()*0xFFFFFF<<0).toString(16) : '#2d3436'
   textNode.innerHTML = text
   range.insertNode(textNode)
   range.setStart(textNode, 1)
@@ -97,7 +112,7 @@ document.querySelector('.settings').addEventListener('click', event => {
   document.querySelector('.settings').classList.add('spin')
   setTimeout(() => {
     document.querySelector('.settings').classList.remove('spin')
-  }, 600)
+  }, 200)
 
   const hideSide = showFront ? '.front' : '.back'
   const showSide = showFront ? '.back' : '.front'
@@ -108,12 +123,32 @@ document.querySelector('.settings').addEventListener('click', event => {
     document.querySelector(hideSide).classList.add('hidden')
     document.querySelector(showSide).classList.remove('disappear')
     document.querySelector(showSide).classList.remove('hidden')
-  }, 600)
+  }, 200)
 })
 
-document.querySelector('.colours').addEventListener('click', () => showColours = !showColours)
+document.querySelector('.colours').addEventListener('click', () => {
+  showColours = !showColours
+  if (showColours) {
+    document.querySelector('.colours .checkbox').classList.add('checked')
+  } else {
+    document.querySelector('.colours .checkbox').classList.remove('checked')
+  }
+})
+document.querySelector('.strike').addEventListener('click', () => {
+  strikeThrough = !strikeThrough
+  if (strikeThrough) {
+    document.querySelector('.strike .checkbox').classList.add('checked')
+  } else {
+    document.querySelector('.strike .checkbox').classList.remove('checked')
+  }
 
-document.querySelectorAll('input[name=mode]').forEach(e => e.addEventListener('click', changeMode))
-function changeMode(event) {
-  displayMode = event.target.value
+})
+
+document.querySelector('.all').addEventListener('click', () => changeMode('all'))
+document.querySelector('.above').addEventListener('click', () => changeMode('above'))
+document.querySelector('.below').addEventListener('click', () => changeMode('below'))
+function changeMode(mode) {
+  displayMode = mode
+  document.querySelectorAll('.radio').forEach(e => e.classList.remove('checked'))
+  document.querySelector(`.${mode} .radio`).classList.add('checked')
 }

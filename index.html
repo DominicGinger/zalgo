@@ -22,32 +22,45 @@
           <div class="tooth"></div>
         </div>
       </div>
-      <div class="range-container">
+      <div class="container">
         <div class="front">
-          <div class="buttons-container">
-            <div class="button-container">
-              <input type="button" class="plus" value="+">
+          <div class="range-container">
+            <div class="buttons-container">
+              <div class="button-container">
+                <input type="button" class="plus" value="+">
+              </div>
+              <div class="button-container">
+                <input type="button" class="minus" value="-">
+              </div>
             </div>
-            <div class="button-container">
-              <input type="button" class="minus" value="-">
-            </div>
+            <input class="range" type="number" value="20">
           </div>
-          <input class="range" type="number" value="20">
           <div class="clear-container">
             <input class="clear" type="button" value="Clear">
           </div>
         </div>
-      <div class="back hidden">
-        <label for="colours">Colors</label>
-        <input class="colours" type="checkbox" name="colours">
-
-        All
-        <input type="radio" class="all" name="mode" value="all" checked/>
-        Above
-        <input type="radio" class="above" name="mode" value="above" />
-        Below
-        <input type="radio" class="below" name="mode" value="below"/>
-      </div>
+        <div class="back hidden">
+          <div class="colours">
+            <span class="checkbox checked">&nbsp;&nbsp;&nbsp;</span>
+            &nbsp;&nbsp;Colors
+          </div>
+          <div class="strike">
+            <span class="checkbox">&nbsp;&nbsp;&nbsp;</span>
+            &nbsp;&nbsp;Strike Through
+          </div>
+          <div class="all">
+            <span class="radio checked">&nbsp;&nbsp;&nbsp;</span>
+            &nbsp;&nbsp;All
+          </div>
+          <div class="above">
+            <span class="radio">&nbsp;&nbsp;&nbsp;</span>
+            &nbsp;&nbsp;Above
+          </div>
+          <div class="below">
+            <span class="radio">&nbsp;&nbsp;&nbsp;</span>
+            &nbsp;&nbsp;Below
+          </div>
+        </div>
       </div>
     </div>
     <div contenteditable="true" class="output" data-placeholder="Enter text here">
