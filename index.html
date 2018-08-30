@@ -23,21 +23,33 @@
         </div>
       </div>
       <div class="range-container">
-        <div class="buttons-container">
-          <div class="button-container">
-            <input type="button" class="plus" value="+">
+        <div class="front">
+          <div class="buttons-container">
+            <div class="button-container">
+              <input type="button" class="plus" value="+">
+            </div>
+            <div class="button-container">
+              <input type="button" class="minus" value="-">
+            </div>
           </div>
-          <div class="button-container">
-            <input type="button" class="minus" value="-">
+          <input class="range" type="number" value="20">
+          <div class="clear-container">
+            <input class="clear" type="button" value="Clear">
           </div>
         </div>
-        <input class="range" type="number" value="20">
+      <div class="back hidden">
+        <label for="colours">Colors</label>
+        <input class="colours" type="checkbox" name="colours">
+
+        All
+        <input type="radio" class="all" name="mode" value="all" checked/>
+        Above
+        <input type="radio" class="above" name="mode" value="above" />
+        Below
+        <input type="radio" class="below" name="mode" value="below"/>
       </div>
-      <div class="clear-container">
-        <input class="clear" type="button" value="Clear">
       </div>
     </div>
-
     <div contenteditable="true" class="output" data-placeholder="Enter text here">
     </div>
   </body>

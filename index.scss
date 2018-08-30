@@ -197,6 +197,22 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
+.front, .back {
+  opacity: 1;
+  transition: 0.6s;
+  &.hidden {
+    display: none;
+  }
+  &.disappear {
+    opacity: 0;
+    transition: 0.6s;
+  }
+}
+
+.back {
+  flex: 0;
+}
+
 .output {
   flex-grow: 1;
   min-width: calc(100% - 8rem);
@@ -227,6 +243,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 
 .settings {
   display: flex;
+  width: 40px;
   height: 100px;
   margin-top: 6rem;
   margin-left: 330px;
@@ -238,8 +255,8 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 
   .gear {
     position: relative;
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     margin: auto;
     border-radius: 50%;
 
@@ -294,5 +311,10 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
     &:nth-child(5){
       transform: rotate(135deg);
     }
+  }
+
+  &.spin {
+    transition: 0.6s;
+    transform: rotate(360deg);
   }
 }
