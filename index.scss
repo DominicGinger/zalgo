@@ -389,3 +389,59 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
     max-width: calc(100% - 4rem);
   }
 } 
+
+.share-container {
+  position: relative;
+  background-color: $black;
+  height: 65px;
+  padding-left: 10px;
+  width: 370px;
+  margin: auto;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 2rem;
+  font-family: fontello;
+}
+
+.share {
+  color: $lightgreen;
+  position: absolute;
+  width: 60px;
+  font-size: 52px;
+  padding-top: 6px;
+
+  &:nth-child(2) {
+    left: 70px;
+  }
+
+  &:nth-child(3) {
+    left: 130px;
+  }
+
+  &:nth-child(4) {
+    left: 190px;
+  }
+
+  &:nth-child(5) {
+    left: 250px;
+  }
+
+  &:nth-child(6) {
+    left: 318px;
+  }
+
+  &:hover {
+    cursor: pointer;
+    top: -2px;
+  }
+
+  &:active {
+    top: 2px;
+  }
+}
+
+@font-face {
+    font-family: fontello;
+    src: url("./fontello.woff");
+}
+

@@ -10,6 +10,32 @@ const limitMap = {
   below: { min: 796, max: 23 }
 }
 
+const shareLinks = {
+  facebook: (text, url) => `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`,
+  twitter: text => `https://twitter.com/intent/tweet?text=${text}`,
+  whatsapp: text => `whatsapp://send?text=${text}`,
+  google: text => `https://plus.google.com/share?text=${text}`,
+  email: text => `mailto:?body=${text}`
+}
+
+window.share = platform => {
+  const url = document.location.href
+  const text = document.querySelector('.output').innerText
+  if (platform === 'copy') {
+    return copyToClipboard(text)
+  }
+  window.open(shareLinks[platform](text, url))
+}
+
+function copyToClipboard(str) {
+  const el = document.createElement('textarea')
+  el.value = str
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+}
+
 function getRandomNumber(min, max) {
   number = Math.floor(Math.random() * max) + min
 
@@ -25,7 +51,6 @@ function getNoise(level) {
   let str = ''
 
   const { min, max } = limitMap[displayMode]
-  console.log(min, max)
   for (let i = 0; i < amount + 1; i++) {
     str += `&#${getRandomNumber(min, max)};`
   }
