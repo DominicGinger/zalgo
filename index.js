@@ -105,6 +105,17 @@ function insertTextAtCursor(text) {
 
 const ignoreKeys = [13, 16, 17, 18, 91, 27, 8, 46, 86] // Enter, alt, shift, control, cmd, esc, backspace, delete, paste
 
+function getKey(event) {
+  if (event.which === 9) { //Tab
+    return ' '
+  }
+  let kCd = event.keyCode || event.which
+  if (kCd === 0 || kCd === 229) { //for android chrome keycode fix
+    kCd = event.target.value.charCodeAt(event.target.value.length - 1)
+  }
+  return String.fromCharCode(kCd)
+}
+
 document.querySelector('.output').addEventListener('keydown', event => ignoreKeys.includes(event.which) || event.preventDefault())
 document.querySelector('.output').addEventListener('keyup', event => {
   event.target.setAttribute('data-placeholder', '');
@@ -112,11 +123,8 @@ document.querySelector('.output').addEventListener('keyup', event => {
     return
   }
   event.preventDefault()
-  if (event.which === 9) { // Tab
-    insertTextAtCursor(transformChar(' '))
-  } else {
-    insertTextAtCursor(transformChar(event.key))
-  }
+  const key = getKey(event)
+  insertTextAtCursor(transformChar(key))
 })
 
 document.querySelector('.range').addEventListener('keyup', event => {
