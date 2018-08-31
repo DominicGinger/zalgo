@@ -5,7 +5,7 @@ let displayMode = 'all'
 let strikeThrough = false
 
 const limitMap = {
-  all: { min: 768, max: 98 },
+  all: { min: 768, max: 51 },
   above: { min: 768, max: 21 },
   below: { min: 796, max: 23 }
 }
@@ -24,7 +24,7 @@ window.share = platform => {
   if (platform === 'copy') {
     return copyToClipboard(text)
   }
-  window.open(shareLinks[platform](text, url))
+  window.open(shareLinks[platform](encodeURI(text), url))
 }
 
 function copyToClipboard(str) {
@@ -86,7 +86,7 @@ function startShake() {
 }
 
 function transformChar(char, level = defaultLevel) {
-  return /^[a-zA-Z0-9 `~!@£$%^&*()-=_+\[\]\{\}:;"'|\\,<.>//?]{1}$/.test(char) ? `${getNoise(level)}${char}${getNoise(level)}` : char
+  return /^[a-zA-Z0-9`~!@£$%^&*()-=_+\[\]\{\}:;"'|\\,<.>//?]{1}$/.test(char) ? `${char}${getNoise(level)}` : char
 }
 
 function insertTextAtCursor(text) {
@@ -109,10 +109,14 @@ function getKey(event) {
   if (event.which === 9) { //Tab
     return ' '
   }
-  let kCd = event.keyCode || event.which
+  if (![undefined, null, ''].includes(event.key)) {
+    return event.key
+  }
+  let kCd = event.which || event.keyCode
   if (kCd === 0 || kCd === 229) { //for android chrome keycode fix
     kCd = event.target.value.charCodeAt(event.target.value.length - 1)
   }
+  console.log(kCd)
   return String.fromCharCode(kCd)
 }
 
