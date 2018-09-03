@@ -89,7 +89,7 @@ function transformChar(char, level = defaultLevel) {
   return /^[a-zA-Z0-9`~!@£$%^&*()-=_+\[\]\{\}:;"'|\\,<.>//?]{1}$/.test(char) ? `${char}${getNoise(level)}` : char
 }
 
-function insertTextAtCursor(text) {
+function insertTextAtCursor(text, key) {
   startShake()
   let sel = window.getSelection()
   let range = sel.getRangeAt(0)
@@ -109,18 +109,18 @@ function getKey(event) {
   if (event.which === 9) { //Tab
     return ' '
   }
-  if (![undefined, null, ''].includes(event.key)) {
+  if (![undefined, null, '', 'Unidentified'].includes(event.key)) {
     return event.key
   }
   let kCd = event.which || event.keyCode
   if (kCd === 0 || kCd === 229) { //for android chrome keycode fix
-    kCd = event.target.value.charCodeAt(event.target.value.length - 1)
+    const innerText = event.target.innerText
+    kCd = innerText.charCodeAt(innerText.length - 1)
   }
-  console.log(kCd)
   return String.fromCharCode(kCd)
 }
 
-document.querySelector('.output').addEventListener('keydown', event => ignoreKeys.includes(event.which) || event.preventDefault())
+document.querySelector('.output').addEventListener('keydown', event => [...ignoreKeys].includes(event.which) || event.preventDefault())
 document.querySelector('.output').addEventListener('keyup', event => {
   event.target.setAttribute('data-placeholder', '');
   if (ignoreKeys.includes(event.which)) {
@@ -128,7 +128,7 @@ document.querySelector('.output').addEventListener('keyup', event => {
   }
   event.preventDefault()
   const key = getKey(event)
-  insertTextAtCursor(transformChar(key))
+  insertTextAtCursor(transformChar(key), key)
 })
 
 document.querySelector('.range').addEventListener('keyup', event => {
