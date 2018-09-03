@@ -103,7 +103,7 @@ function insertTextAtCursor(text, key) {
   sel.addRange(range)
 }
 
-const ignoreKeys = [13, 16, 17, 18, 91, 27, 8, 46, 86] // Enter, alt, shift, control, cmd, esc, backspace, delete, paste
+const ignoreKeys = [13, 16, 17, 18, 91, 27, 8, 46, 86, 224] // Enter, alt, shift, control, cmd, esc, backspace, delete, paste, cmdff
 
 function getKey(event) {
   if (event.which === 9) { //Tab

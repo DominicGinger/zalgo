@@ -281,7 +281,7 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
   margin-top: 6rem;
   margin-left: 330px;
   margin-bottom: -50px;
-  
+
   &:hover {
     cursor: pointer;
   }
@@ -358,38 +358,6 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
   min-height: 200px;
 }
 
-@media all and (max-width: 800px) {
-  body {
-    padding: 0px;
-  }
-
-  .container {
-    padding: 0px;
-    max-width: 100%;
-  }
-
-  .header {
-    padding: 0px;
-    margin-top: 0px;
-
-    .title-container {
-      position: static;
-    }
-  }
-
-  .settings {
-    margin-left: 75%;
-    margin-top: 0px;
-  }
-
-  .output {
-    margin-left: 0px;
-    margin-right: 0px;
-    min-width: calc(100% - 4rem);
-    max-width: calc(100% - 4rem);
-  }
-} 
-
 .share-container {
   position: relative;
   background-color: $black;
@@ -441,7 +409,79 @@ div[data-placeholder]:not(:focus):not([data-div-placeholder-content]):before {
 }
 
 @font-face {
-    font-family: fontello;
-    src: url("./fontello.woff");
+  font-family: fontello;
+  src: url("./fontello.woff");
 }
+
+@media all and (max-width: 800px) {
+  body {
+    padding: 0px;
+  }
+
+  .container {
+    padding: 0px;
+    max-width: 100%;
+  }
+
+  .header {
+    padding: 0px;
+    margin-top: 0px;
+
+    .title-container {
+      position: static;
+    }
+  }
+
+  .settings {
+    margin-left: 75%;
+    margin-top: 0px;
+  }
+
+  .output {
+    margin-left: 0px;
+    margin-right: 0px;
+    min-width: calc(100% - 4rem);
+    max-width: calc(100% - 4rem);
+  }
+
+  .share-container {
+    height: 60px;
+    width: 285px;
+  }
+
+  .share {
+    width: 50px;
+    font-size: 40px;
+
+    &:nth-child(2) {
+      left: 55px;
+    }
+
+    &:nth-child(3) {
+      left: 100px;
+    }
+
+    &:nth-child(4) {
+      left: 145px;
+    }
+
+    &:nth-child(5) {
+      left: 190px;
+    }
+
+    &:nth-child(6) {
+      left: 242px;
+    }
+
+    &:hover {
+      cursor: pointer;
+      top: -2px;
+    }
+
+    &:active {
+      top: 2px;
+    }
+  }
+} 
+
 
